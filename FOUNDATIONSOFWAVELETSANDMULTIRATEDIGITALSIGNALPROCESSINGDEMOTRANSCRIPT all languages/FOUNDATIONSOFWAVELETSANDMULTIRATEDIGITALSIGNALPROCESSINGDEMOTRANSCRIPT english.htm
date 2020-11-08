@@ -1,0 +1,194 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 15 (filtered)">
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Georgia;
+	panose-1:2 4 5 2 5 4 5 2 3 3;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:10.0pt;
+	margin-left:0cm;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	color:#00000A;}
+.MsoChpDefault
+	{font-family:"Calibri",sans-serif;
+	color:#00000A;}
+.MsoPapDefault
+	{margin-bottom:10.0pt;
+	line-height:115%;}
+@page WordSection1
+	{size:595.3pt 841.9pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-IN style='word-wrap:break-word'>
+
+<div class=WordSection1>
+
+<p class=MsoNormal align=center style='margin-bottom:0cm;text-align:center;
+line-height:normal;border:none'><b><span lang=EN style='font-size:12.0pt;
+color:black'>Foundation of Wavelets and Multirate</span></b></p>
+
+<p class=MsoNormal align=center style='margin-bottom:0cm;text-align:center;
+line-height:normal;border:none'><b><span lang=EN style='font-size:12.0pt;
+color:black'>Digital Signal Processing</span></b></p>
+
+<p class=MsoNormal align=center style='margin-bottom:0cm;text-align:center;
+line-height:normal;border:none'><b><span lang=EN style='font-size:12.0pt;
+color:black'>Professor Vikram M. Gadre</span></b></p>
+
+<p class=MsoNormal align=center style='margin-bottom:0cm;text-align:center;
+line-height:normal;border:none'><b><span lang=EN style='font-size:12.0pt;
+color:black'>Department of Electrical Engineering</span></b></p>
+
+<p class=MsoNormal align=center style='margin-bottom:0cm;text-align:center;
+line-height:normal;border:none'><b><span lang=EN style='font-size:12.0pt;
+color:black'>Indian Institute of Technology, Bombay</span></b></p>
+
+<p class=MsoNormal align=center style='margin-bottom:0cm;text-align:center;
+line-height:normal;border:none'><b><span lang=EN style='font-size:12.0pt;
+color:black'>Lecture Number 3</span></b></p>
+
+<p class=MsoNormal align=center style='margin-bottom:0cm;text-align:center;
+line-height:normal;border:none'><b><span lang=EN style='font-size:12.0pt;
+color:black'> Module No. 1</span></b></p>
+
+<p class=MsoNormal align=center style='text-align:center;line-height:normal'><b><span
+lang=EN style='font-size:12.0pt'>Piecewise Constant Representation of a
+Function</span></b></p>
+
+<p class=MsoNormal style='margin-top:1.5pt;text-align:justify;line-height:150%'><span
+lang=EN style='font-size:12.0pt;line-height:150%'>  Warm welcome to the 3<sup>rd</sup>
+lecture on the subject of Wavelets and multi-trate digital signal processing.
+Let us spend the minute on what we talked about in the second lecture. We had
+introduced the idea of a wavelet in the second lecture. And we had done so by
+using the Haar wavelets. Essentially where piecewise constant of approximations
+are refined in steps by factors of 2 at a time.</span></p>
+
+<p class=MsoNormal style='margin-top:1.5pt;text-align:justify;line-height:150%'><span
+lang=EN style='font-size:12.0pt;line-height:150%'>In today’s lecture, we intend
+to build further on the idea of the Haar wavelet by introducing what is called
+a multiresolution analysis or an MRA as is often referred to in brief. So let
+me title today’s lecture, we shall title today’s lecture as the Haar
+multiresolution analysis and in fact let me also put down here the abbreviation
+for multiresolution analysis MRA.</span></p>
+
+<p class=MsoNormal style='margin-top:1.5pt;text-align:justify;line-height:normal'><span
+lang=EN style='font-size:12.0pt'>(Refer Slide Time: 01:49)</span></p>
+
+<p class=MsoNormal align=center style='margin-top:1.5pt;text-align:center;
+line-height:normal'><img width=384 height=288 id=image2.png
+src="FOUNDATIONSOFWAVELETSANDMULTIRATEDIGITALSIGNALPROCESSINGDEMOTRANSCRIPT%20english_files/image001.jpg"></p>
+
+<p class=MsoNormal style='margin-top:1.5pt;text-align:justify;line-height:150%'><span
+lang=EN style='font-size:12.0pt;line-height:150%'>You see, the whole idea of
+multiresolution analysis has been briefly introduced in the context of
+piecewise constant approximation. So recall what we said that the whole idea of
+the wavelet is to capture incremental information. Piecewise constant
+approximation inherently brings in the idea of representation at a certain
+resolution. We took the idea of representing an image at different resolution.</span></p>
+
+<p class=MsoNormal style='margin-top:1.5pt;text-align:justify;line-height:150%'><span
+lang=EN style='font-size:12.0pt;line-height:150%'>In fact we use the term
+resolution when we represent images in the computer. 512x512 is a resolution
+lower than 1024x1024 and one way to understand the notion of wavelets or to
+understand the notion of incremental information is to ask, if I take the same
+picture, the same two dimensional scene or same two dimension objects and
+represent it first at the resolution of 512x512 and then at a resolution of
+1024x1024.</span></p>
+
+<p class=MsoNormal style='margin-top:1.5pt;text-align:justify;line-height:150%'><span
+lang=EN style='font-size:12.0pt;line-height:150%'>What is it that I’m
+additionally putting in to get that greater resolution of 1024x1024 which is
+not there in 512x512? The Haar wavelet captures this. </span><span lang=EN> </span><span
+lang=EN style='font-size:12.0pt;line-height:150%'>So in some sense, you may
+want to think of the Haar wavelet as being able to capture the additional
+information in the higher resolution and therefore if you think of an object
+with many shells. </span><span lang=EN> </span><span lang=EN style='font-size:
+12.0pt;line-height:150%'>So this is a very common analogy.</span></p>
+
+<p class=MsoNormal style='margin-top:1.5pt;text-align:justify;line-height:normal'><span
+lang=EN style='font-size:12.0pt'>(Refer Slide Time: 03:50)</span></p>
+
+<p class=MsoNormal align=center style='margin-top:1.5pt;text-align:center;
+line-height:normal'><img width=384 height=288 id=image3.png
+src="FOUNDATIONSOFWAVELETSANDMULTIRATEDIGITALSIGNALPROCESSINGDEMOTRANSCRIPT%20english_files/image002.jpg"></p>
+
+<p class=MsoNormal style='margin-top:1.5pt;text-align:justify;line-height:150%'><span
+lang=EN style='font-size:12.0pt;line-height:150%'>You know, if you think of the
+maximum information, maybe as a cabbage or an onion informally. And if you
+visualize the shells of this cabbage or the onion like this, then the job of
+the wavelet is to take out a particular shell. So the wavelet at the highest
+resolution, wavelet translates at highest resolution, at max resolution would
+essentially take out this. At next resolution, it would take out this shell and
+so on.</span></p>
+
+<p class=MsoNormal style='margin-top:1.5pt;text-align:justify;line-height:150%'><span
+lang=EN style='font-size:12.0pt;line-height:150%'>So when you reduce the
+resolution, what you are doing is to peel off shell by shell. In fact this idea
+is so important that we should write it down.</span></p>
+
+<span style='font-size:11.0pt;font-family:"Calibri",sans-serif'><br clear=all
+style='page-break-before:always'>
+</span>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
+style='font-size:12.0pt;font-family:"Times New Roman",serif'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-top:1.5pt;text-align:justify;line-height:normal'><span
+lang=EN style='font-size:12.0pt'>(Refer Slide Time: 05:12)</span></p>
+
+<p class=MsoNormal align=center style='margin-top:1.5pt;text-align:center;
+line-height:normal'><img width=384 height=288 id=image1.png
+src="FOUNDATIONSOFWAVELETSANDMULTIRATEDIGITALSIGNALPROCESSINGDEMOTRANSCRIPT%20english_files/image003.jpg"></p>
+
+<p class=MsoNormal style='margin-top:1.5pt;text-align:justify;line-height:150%'><span
+lang=EN style='font-size:12.0pt;line-height:150%'> We are essentially peeling
+off shell by shell using different dilates and translates of the Haar wavelet.
+And there again a little more detail, different dilates correspond to different
+resolutions, and different translates essentially take you along a given
+resolution.</span></p>
+
+<p class=MsoNormal style='margin-top:1.5pt;text-align:justify;line-height:150%'><span
+lang=EN style='font-size:12.0pt;line-height:150%'>That is the relation between
+peeling off shells and dilates and translates. Now all this is an informal way
+of expressing this, we need to formalize it and that is exactly what we intend
+to do in the lecture today. Again we would now like to talk in terms of linear
+spaces. So, without any loss of generality let us begin with a unit length for
+piecewise constant approximation. </span></p>
+
+<p class=MsoNormal style='margin-top:1.5pt;text-align:justify;line-height:150%'><span
+lang=EN style='font-size:12.0pt;line-height:150%'>I say, without the loss of
+generality because after all what you consider as unit length is entirely your
+choice; you can call 1 meter unit length, you can call 1 centimetre unit
+length. Or if you are talking about time, you can talk about 1 second as unit
+length or unit piece and so on. So unit on the independent variable is our
+choice and that sense without any loss of generality.</span></p>
+
+<p class=MsoNormal style='margin-top:1.5pt;text-align:justify;line-height:150%'>&nbsp;</p>
+
+</div>
+
+</body>
+
+</html>
